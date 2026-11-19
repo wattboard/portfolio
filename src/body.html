@@ -1,0 +1,519 @@
+<title>Miguel Ángel de Arriba</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Desarrollador móvil iOS y Android. Apps nativas en Swift y Kotlin publicadas en la App Store y Google Play.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long page, a header band with the person, then each app as a "spec sheet" row of copy beside real device screenshots. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --ink:#0E1726; --muted:#566275; --line:#D9DFE8;
+  --accent:#2C55E8; --accent-ink:#FFFFFF; --frame:#141B26; --chip:#E8EDF5; --ok:#178A4C; --ok-bg:#E2F4EA; --beta:#9A5B00; --beta-bg:#FBF0DC; --dev:#5A4FCF; --dev-bg:#ECEAFB;
+  --font-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body:"Inter", -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --step--1:0.8125rem; --step-0:1rem; --step-1:1.1875rem; --step-2:1.5rem; --step-3:2.125rem; --step-4:clamp(2.4rem, 6vw, 3.75rem);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0A0F17; --surface:#111925; --ink:#E7EDF5; --muted:#97A3B6; --line:#223043;
+  --accent:#7D9BFF; --accent-ink:#0A0F17; --frame:#2A3546; --chip:#1A2433; --ok:#5FD195; --ok-bg:#12301F; --beta:#F2B65A; --beta-bg:#33260F; --dev:#ADA6FF; --dev-bg:#221F45; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0A0F17; --surface:#111925; --ink:#E7EDF5; --muted:#97A3B6; --line:#223043;
+  --accent:#7D9BFF; --accent-ink:#0A0F17; --frame:#2A3546; --chip:#1A2433; --ok:#5FD195; --ok-bg:#12301F; --beta:#F2B65A; --beta-bg:#33260F; --dev:#ADA6FF; --dev-bg:#221F45; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;text-wrap:balance;margin:0;letter-spacing:-0.01em}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.mono{font-family:var(--font-mono);font-size:var(--step--1)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--step--1);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.todo{background:var(--beta-bg);color:var(--beta);border:1px dashed var(--beta);border-radius:4px;padding:0 .3em}
+
+/* Nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+.nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:9;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.nav .brand{font-family:var(--font-display);font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;font-size:var(--step--1)}
+.nav ul a{color:var(--muted);text-decoration:none}
+.nav ul a:hover{color:var(--ink)}
+@media (max-width:640px){ .nav ul li:not(.keep){display:none} }
+
+/* Buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-weight:600;font-size:.9375rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn svg{width:16px;height:16px;flex:none}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding-block:64px 56px}
+.hero h1{font-size:var(--step-4);font-weight:800;margin-top:12px}
+.hero .lead{font-size:var(--step-1);color:var(--muted);max-width:34em;margin-top:18px}
+.hero .btns{margin-top:28px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.facts div{padding:14px 12px 0 0}
+.facts b{display:block;font-family:var(--font-display);font-size:var(--step-2);font-variant-numeric:tabular-nums}
+.facts span{font-size:var(--step--1);color:var(--muted);line-height:1.35;display:block}
+.fan{position:relative;height:440px}
+.fan .phone{position:absolute;width:200px;top:20px;box-shadow:0 24px 48px -20px rgba(10,20,40,.45)}
+.fan .phone:nth-child(1){left:6%;transform:rotate(-7deg);top:46px}
+.fan .phone:nth-child(2){left:calc(50% - 100px);z-index:2}
+.fan .phone:nth-child(3){right:6%;transform:rotate(7deg);top:46px}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:40px}
+  .fan{height:330px}
+  .fan .phone{width:150px}
+  .fan .phone:nth-child(2){left:calc(50% - 75px)}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Phone frame */
+.phone{border:5px solid var(--frame);border-radius:30px;overflow:hidden;background:var(--frame);flex:none}
+.phone img{display:block;width:100%;height:auto}
+.phone.flat{border:none;border-radius:18px}
+
+/* Sections */
+section{padding-block:72px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;max-width:44em}
+.sec-head h2{font-size:var(--step-3);font-weight:700}
+.sec-head p{color:var(--muted)}
+
+/* Projects */
+.project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;padding-block:48px;border-top:1px solid var(--line)}
+.project:first-of-type{border-top:none;padding-top:0}
+.project.rev .copy{order:2}
+.p-head{display:flex;gap:16px;align-items:center}
+.p-head img{width:64px;height:64px;border-radius:15px;flex:none}
+.p-head h3{font-size:var(--step-2);font-weight:700}
+.p-head .tag{color:var(--muted);font-size:.9375rem;margin-top:2px}
+.status{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.pill{font-family:var(--font-mono);font-size:.75rem;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.beta{background:var(--beta-bg);color:var(--beta)}
+.pill.dev{background:var(--dev-bg);color:var(--dev)}
+.copy{display:flex;flex-direction:column;min-width:0}
+.copy .what{margin-top:18px}
+.copy dl{margin:22px 0 0;display:grid;gap:14px}
+.copy dt{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.copy dd{margin:4px 0 0}
+.copy ul{margin:4px 0 0;padding-left:1.1em}
+.copy li+li{margin-top:4px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.stack span{font-family:var(--font-mono);font-size:.75rem;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink)}
+.copy .btns{margin-top:24px}
+.copy .btn{font-size:.875rem;padding:8px 13px}
+.shots{display:flex;gap:14px;align-items:flex-start;justify-content:center;min-width:0}
+.shots .phone{width:calc((100% - 28px)/3);max-width:190px}
+.shots .phone:nth-child(2){margin-top:28px}
+.shots.flat .phone{border-radius:16px;border:none}
+.mac{margin-top:18px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.mac img{display:block;width:100%}
+.figcap{font-size:var(--step--1);color:var(--muted);margin-top:8px;text-align:center}
+.game{width:100%;max-width:520px;aspect-ratio:19.5/9;border:6px solid var(--frame);border-radius:34px;overflow:hidden;background:#47B8E8;margin:0 auto}
+.game canvas{display:block;width:100%;height:100%}
+.visual{display:flex;flex-direction:column;justify-content:center;min-width:0}
+@media (max-width:860px){
+  .project{grid-template-columns:minmax(0,1fr);gap:28px}
+  .project.rev .copy{order:0}
+  .shots{overflow-x:auto;justify-content:flex-start;padding-bottom:6px;scroll-snap-type:x mandatory}
+  .shots .phone{width:44%;max-width:none;scroll-snap-align:start}
+  .shots .phone:nth-child(2){margin-top:0}
+}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.skills h3{font-size:var(--step-1);font-weight:700;margin-bottom:10px}
+.skills ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:.9375rem}
+.skills li{padding-left:14px;position:relative}
+.skills li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:2px;background:var(--accent)}
+@media (max-width:860px){ .skills{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:480px){ .skills{grid-template-columns:minmax(0,1fr)} }
+
+/* Process */
+.process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:s;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.process li{list-style:none;padding:22px;border-left:1px solid var(--line);counter-increment:s}
+.process li:first-child{border-left:none}
+.process li::before{content:counter(s);font-family:var(--font-mono);font-size:var(--step--1);color:var(--accent);display:block;margin-bottom:8px}
+.process b{display:block;font-family:var(--font-display);font-size:var(--step-1);margin-bottom:6px}
+.process p{font-size:.9375rem;color:var(--muted)}
+.process{padding:0;margin:0}
+@media (max-width:860px){ .process{grid-template-columns:minmax(0,1fr)} .process li{border-left:none;border-top:1px solid var(--line)} .process li:first-child{border-top:none} }
+
+/* About + contact */
+.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:48px}
+.about .text p+p{margin-top:14px}
+.about .text{max-width:38em}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;align-content:start}
+.card .row{display:grid;gap:2px}
+.card .row span:first-child{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card .row a,.card .row span:last-child{overflow-wrap:anywhere}
+@media (max-width:860px){ .about{grid-template-columns:minmax(0,1fr)} }
+
+.timeline ol{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.timeline li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline}
+.timeline li b{display:block;font-weight:600;font-size:.9375rem;line-height:1.4}
+.timeline li div span{font-size:var(--step--1);color:var(--muted)}
+.timeline .mono{color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:480px){ .timeline li{grid-template-columns:minmax(0,1fr);gap:0} }
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:var(--step--1)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+
+<nav class="nav" aria-label="Principal">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Miguel Ángel de Arriba</a>
+    <ul>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#tecnologias">Tecnologías</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li class="keep"><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Desarrollador móvil · iOS y Android</p>
+      <h1>Miguel Ángel de Arriba</h1>
+      <p class="lead">Diseño, programo y publico apps nativas en Swift y Kotlin, desde la primera idea hasta la ficha de la tienda. Más de 20 años programando y administrando sistemas, y cinco apps propias, dos de ellas ya en la App Store.</p>
+      <div class="btns">
+        <a class="btn primary" href="#proyectos">Ver proyectos</a>
+        <a class="btn" href="cv.pdf"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v8m0 0 3-3m-3 3L5 7M3 13h10"/></svg>Descargar CV</a>
+        <a class="btn" href="https://github.com/wattboard"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      </div>
+      <div class="facts">
+        <div><b>5</b><span>apps propias, de la idea a la tienda</span></div>
+        <div><b>2</b><span>publicadas en la App Store</span></div>
+        <div><b>74.000</b><span>líneas de Swift y Kotlin</span></div>
+        <div><b>900+</b><span>tests automatizados</span></div>
+      </div>
+    </div>
+    <div class="fan" aria-hidden="true">
+      <div class="phone"><img src="assets/wattboard-1.jpg" alt=""></div>
+      <div class="phone"><img src="assets/glanceboard-1.jpg" alt=""></div>
+      <div class="phone"><img src="assets/hexa-1.jpg" alt=""></div>
+    </div>
+  </div>
+</header>
+
+<section id="proyectos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Proyectos</p>
+      <h2>Apps que he hecho y publicado</h2>
+      <p>Todas son proyectos propios: me he encargado del producto, el diseño, el código en iOS y Android, las pruebas y la publicación.</p>
+    </div>
+
+    <!-- WattBoard -->
+    <article class="project" id="wattboard">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/wattboard-icon.png" alt="Icono de WattBoard">
+          <div><h3>WattBoard</h3><p class="tag">Los datos de tu coche eléctrico, desde tu propio servidor</p></div>
+        </div>
+        <div class="status">
+          <span class="pill ok">App Store · iPhone, iPad, Mac y Watch</span>
+          <span class="pill beta">Google Play · prueba cerrada</span>
+          <span class="pill">7 idiomas</span>
+        </div>
+        <p class="what">Visor nativo para quien guarda los datos de su coche en un servidor propio (TeslaMate y Grafana). Muestra estado del coche, trayectos, cargas y estadísticas, sin nube, sin cuenta y sin rastreo.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>La app completa en las cuatro plataformas de Apple con SwiftUI y una versión Android nativa en Jetpack Compose, con widgets, avisos de carga, exportación CSV/GPX y bloqueo con Face ID o huella. Publico versiones nuevas cada pocos días en ambas tiendas.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>Los paneles de Grafana del usuario se convierten en pantallas nativas (gráficas, tablas, mapas) en lugar de mostrar una web incrustada.</li>
+              <li>El dibujo del coche se genera según el modelo, la llanta y el color reales, decodificando los códigos de opción del fabricante.</li>
+              <li>En Android, compras verificadas con firma de Google Play, Play Integrity y código ofuscado con R8.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>Swift Charts</span><span>WidgetKit</span><span>watchOS</span><span>Kotlin</span><span>Jetpack Compose</span><span>Glance</span><span>Play Billing</span><span>Go</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn primary" href="https://apps.apple.com/es/app/wattboard/id6823307252">App Store</a>
+          <a class="btn" href="https://github.com/wattboard/wattboard">Página del proyecto</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots">
+          <div class="phone"><img src="assets/wattboard-1.jpg" alt="Pantalla Coche: batería al 74 %, autonomía y estado del vehículo" loading="lazy"></div>
+          <div class="phone"><img src="assets/wattboard-2.jpg" alt="Lista de trayectos con distancia, consumo y energía" loading="lazy"></div>
+          <div class="phone"><img src="assets/wattboard-3.jpg" alt="Estadísticas semanales con gráfica de distancia" loading="lazy"></div>
+        </div>
+        <div class="mac"><img src="assets/wattboard-mac.jpg" alt="WattBoard en el Mac, con barra lateral y panel del coche" loading="lazy"></div>
+      </div>
+    </article>
+
+    <!-- Pasito -->
+    <article class="project rev" id="pasito">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/pasito-icon.png" alt="Icono de Pasito">
+          <div><h3>Pasito</h3><p class="tag">Convierte una tarea que te bloquea en pasos pequeños</p></div>
+        </div>
+        <div class="status">
+          <span class="pill ok">App Store · iPhone</span>
+          <span class="pill">IA en el dispositivo</span>
+          <span class="pill">0 dependencias</span>
+        </div>
+        <p class="what">Herramienta de organización pensada para personas con TDAH. Divide una tarea en pasos, estima su duración y la guía de uno en uno con un modo enfoque. La IA funciona dentro del iPhone, sin conexión.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>Toda la app en Swift 6 con concurrencia estricta, sin librerías de terceros: herramientas de IA, listas con SwiftData, modo enfoque con temporizador, widget, Live Activity, Atajos de Siri y pago único con StoreKit 2.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>Usa el modelo de lenguaje local de Apple (Foundation Models) con respuestas estructuradas que llegan en streaming.</li>
+              <li>Monté una batería de evaluación con 20 tareas reales para medir cada cambio de prompt. Subí la calidad de 11 a 15 de 20 y descarté con datos tres alternativas peores o más lentas.</li>
+              <li>Respondí a un rechazo de App Review con cambios de producto y la app se aprobó.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift 6</span><span>SwiftUI</span><span>Foundation Models</span><span>SwiftData</span><span>StoreKit 2</span><span>ActivityKit</span><span>App Intents</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn primary" href="https://apps.apple.com/es/app/pasito-tareas-en-pasos/id6827150164">App Store</a>
+          <a class="btn" href="https://wattboard.github.io/pasito-web/">Web</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots flat">
+          <div class="phone"><img src="assets/pasito-1.jpg" alt="Desglosar tarea: una tarea dividida en pasos con su duración" loading="lazy"></div>
+          <div class="phone"><img src="assets/pasito-2.jpg" alt="Modo enfoque: un solo paso a la vista con temporizador" loading="lazy"></div>
+          <div class="phone"><img src="assets/pasito-3.jpg" alt="Volcado mental convertido en una lista de acciones" loading="lazy"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Glanceboard -->
+    <article class="project" id="glanceboard">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/glanceboard-icon.png" alt="Icono de Glanceboard">
+          <div><h3>Glanceboard</h3><p class="tag">Segunda pantalla para el coche, por Bluetooth directo</p></div>
+        </div>
+        <div class="status">
+          <span class="pill beta">iOS · TestFlight</span>
+          <span class="pill beta">Google Play · prueba cerrada</span>
+          <span class="pill">7 idiomas</span>
+        </div>
+        <p class="what">Convierte un móvil montado tras el volante en un cuadro de mandos en vivo: velocidad, potencia, batería, neumáticos, puertas y carga. Habla con el coche por Bluetooth, sin servidor ni cuenta en la nube.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>Apps nativas en iOS y Android con modo vertical, horizontal y HUD, controles del coche, widgets, Live Activity, app de Apple Watch, suscripción y pago único, y anuncios con consentimiento RGPD.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>En Android implementé en Kotlin el protocolo Bluetooth cifrado del coche: sesión, firma de mensajes, tramas y Protobuf.</li>
+              <li>Antes de escribir la app hice una prueba de concepto en carretera y medí unas 4 lecturas por segundo y un límite de unos 330 bytes por respuesta. Con eso diseñé una rotación de categorías de datos y la velocidad por GPS como respaldo.</li>
+              <li>Por seguridad, los controles solo funcionan con el coche aparcado y piden confirmación.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>Core Bluetooth</span><span>ActivityKit</span><span>Kotlin</span><span>Compose</span><span>Protobuf</span><span>CryptoKit</span><span>AdMob</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn" href="https://wattboard.github.io/glanceboard-web/">Web</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots">
+          <div class="phone"><img src="assets/glanceboard-1.jpg" alt="Pantalla de conducción con velocímetro en arco a 118 km/h" loading="lazy"></div>
+          <div class="phone"><img src="assets/glanceboard-2.jpg" alt="Vista cenital del coche con presión de cada neumático" loading="lazy"></div>
+          <div class="phone"><img src="assets/glanceboard-3.jpg" alt="Pantalla de carga con porcentaje y autonomía" loading="lazy"></div>
+        </div>
+        <p class="figcap">Capturas de la versión Android, con datos de demostración.</p>
+      </div>
+    </article>
+
+    <!-- Hexa -->
+    <article class="project rev" id="hexa">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/hexa-icon.png" alt="Icono de Hexa">
+          <div><h3>Hexa</h3><p class="tag">Aprender sobre insectos y perderles el miedo</p></div>
+        </div>
+        <div class="status">
+          <span class="pill beta">iOS y iPadOS · TestFlight</span>
+          <span class="pill beta">Google Play · prueba cerrada</span>
+          <span class="pill">Web instalable</span>
+        </div>
+        <p class="what">App educativa gratuita para niñas y niños de 5.º y 6.º de primaria, con lecciones cortas al estilo de los cursos de idiomas. El contenido es de una tesis de maestría en enseñanza de la biología, usado con permiso de su autora.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>La misma app en tres plataformas: iOS y iPadOS con SwiftUI, Android con Compose y una web instalable que funciona sin internet. Incluye cinco tipos de ejercicio, narración por voz, un modo docente con PIN y las ilustraciones propias.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>El temario vive en archivos JSON compartidos por las tres plataformas, así que el contenido se edita una sola vez.</li>
+              <li>Pensada para menores: sin cuentas, sin anuncios y sin recoger ningún dato. El progreso de la clase se exporta a un archivo.</li>
+              <li>Las decisiones de contenido (nota de aprobado, cursos, mascota) se cerraron con la autora del temario.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>Kotlin</span><span>Compose</span><span>TypeScript</span><span>Vite</span><span>PWA</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn primary" href="https://wattboard.github.io/hexa-web/app/">Probar en el navegador</a>
+          <a class="btn" href="https://wattboard.github.io/hexa-web/">Beta iOS y Android</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots">
+          <div class="phone"><img src="assets/hexa-1.jpg" alt="Mapa de la unidad Los insectos con lecciones completadas" loading="lazy"></div>
+          <div class="phone"><img src="assets/hexa-2.jpg" alt="Lección sobre mariposas y polillas con la mascota" loading="lazy"></div>
+          <div class="phone"><img src="assets/hexa-3.jpg" alt="Ejercicio para ordenar el ciclo de vida de la mariposa" loading="lazy"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Zipwing -->
+    <article class="project" id="zipwing">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/zipwing-icon.png" alt="Icono de Zipwing">
+          <div><h3>Zipwing</h3><p class="tag">Juego arcade de un solo toque</p></div>
+        </div>
+        <div class="status">
+          <span class="pill dev">iOS · en desarrollo</span>
+          <span class="pill">SpriteKit</span>
+          <span class="pill">Game Center</span>
+        </div>
+        <p class="what">Mantén pulsado para engancharte al techo y balancearte; suelta para salir volando y cruzar los huecos antes de que te alcance la pared.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>El juego completo en SpriteKit: física del balanceo, generación del nivel, combos por pasar rozando, récords en Game Center y una compra para quitar los anuncios.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>Reto diario con semilla fija: todos los jugadores juegan el mismo nivel ese día, con racha de días seguidos.</li>
+              <li>Generador aleatorio con semilla propia para que el nivel sea idéntico en cualquier iPhone.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SpriteKit</span><span>GameKit</span><span>StoreKit 2</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn" href="https://wattboard.github.io/zipwing-web/">Web</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="game"><canvas id="zipwing-canvas" aria-label="Animación ilustrativa del juego: un pájaro se balancea colgado de una cuerda entre tuberías"></canvas></div>
+        <p class="figcap">Animación ilustrativa con la paleta del juego.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="tecnologias">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Tecnologías</p>
+      <h2>Con qué trabajo</h2>
+      <p>Todo lo de esta lista está en producción o en beta en alguna de las apps de arriba.</p>
+    </div>
+    <div class="skills">
+      <div><h3>iOS</h3><ul>
+        <li>Swift 6 y concurrencia estricta</li><li>SwiftUI, UIKit</li><li>SwiftData, Observation</li><li>WidgetKit, Live Activities</li><li>watchOS y macOS</li><li>App Intents y Siri</li><li>Core Bluetooth, MapKit, Swift Charts</li><li>Foundation Models (IA local)</li><li>SpriteKit, GameKit</li>
+      </ul></div>
+      <div><h3>Android</h3><ul>
+        <li>Kotlin y corrutinas</li><li>Jetpack Compose, Material 3</li><li>Glance (widgets)</li><li>DataStore, WorkManager</li><li>Bluetooth LE</li><li>Biometría y Keystore</li><li>R8 y Play Integrity</li>
+      </ul></div>
+      <div><h3>Producto y tiendas</h3><ul>
+        <li>StoreKit 2 y Google Play Billing</li><li>Suscripciones, pago único y pruebas</li><li>AdMob con consentimiento RGPD</li><li>TestFlight y pruebas cerradas</li><li>App Review y políticas de Google Play</li><li>Fichas y capturas en 7 idiomas</li><li>Privacidad por diseño</li>
+      </ul></div>
+      <div><h3>Herramientas</h3><ul>
+        <li>Git y GitHub</li><li>XCTest, Swift Testing, JUnit</li><li>XcodeGen, Gradle</li><li>APIs de App Store Connect y Google Play</li><li>Scripts en Python para automatizar publicaciones</li><li>Go, TypeScript, Cloudflare Workers</li><li>GitHub Pages</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2>De la idea a la tienda</h2>
+    </div>
+    <ol class="process">
+      <li><b>Validar primero</b><p>Antes de escribir la app, una prueba de concepto que mida lo que no sé, como la velocidad real del Bluetooth del coche o la calidad del modelo de IA.</p></li>
+      <li><b>Nativo en cada plataforma</b><p>SwiftUI en Apple y Compose en Android, con la lógica y el contenido compartidos donde tiene sentido.</p></li>
+      <li><b>Probar con usuarios</b><p>Betas en TestFlight y en Google Play, avisos de versión nueva dentro de la app y cambios a partir de lo que cuentan los testers.</p></li>
+      <li><b>Publicar y mantener</b><p>Fichas, capturas y textos en varios idiomas, revisión de las tiendas y versiones frecuentes, automatizadas con las APIs de las tiendas.</p></li>
+    </ol>
+
+    <div class="about" style="margin-top:56px">
+      <div class="text">
+        <p class="eyebrow" style="margin-bottom:10px">Sobre mí</p>
+        <p>Llevo más de 20 años en informática. Empecé programando en C/C++, Pro*C y Oracle para facturación de operadoras, y después pasé a sistemas, soporte de nivel 3 y gestión de proyectos para Telefónica, Vodafone y grandes redes 2G a 5G. Hoy trabajo en Logicalis en herramientas cloud y DevOps.</p>
+        <p>Me formé en Swift en 2017 y en 2026 he diseñado, programado y publicado mis propias apps nativas para iOS y Android. Ahora quiero dedicarme a ello por completo. De mi trayectoria traigo lo que se nota en las apps de esta página: automatizarlo todo, medir antes de decidir, cuidar la seguridad y mantener lo que publico.</p>
+        <p>Vivo en Madrid y busco un puesto de desarrollador iOS, Android o móvil multiplataforma nativo, en remoto.</p>
+        <div class="timeline">
+          <p class="eyebrow" style="margin:28px 0 12px">Trayectoria</p>
+          <ol>
+            <li><span class="mono">2026 –</span><div><b>Cloud tools y DevOps</b><span>Logicalis</span></div></li>
+            <li><span class="mono">2017 – 2026</span><div><b>Sistemas Linux, Splunk, monitorización de redes y jefe de proyectos IT</b><span>Logicalis</span></div></li>
+            <li><span class="mono">2009 – 2017</span><div><b>Soporte de nivel 2 y 3, desarrollo y gestión de proyectos para Telefónica</b><span>POSS Solution – LTE</span></div></li>
+            <li><span class="mono">2005 – 2009</span><div><b>Programador sénior (C/C++, Pro*C, Oracle, Sybase) y sistemas</b><span>GFI Informática</span></div></li>
+            <li><span class="mono">2002 – 2005</span><div><b>Técnico superior en Desarrollo de Aplicaciones Informáticas y en Administración de Sistemas</b><span>IES Palomeras-Vallecas</span></div></li>
+          </ol>
+        </div>
+      </div>
+      <div class="card" id="contacto">
+        <p class="eyebrow">Contacto</p>
+        <div class="row"><span>Correo</span><a href="mailto:zerocoolspain@gmail.com">zerocoolspain@gmail.com</a></div>
+        <div class="row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/miguel-%C3%A1ngel-de-arriba-guti%C3%A9rrez-b70b309/">Miguel Ángel de Arriba Gutiérrez</a></div>
+        <div class="row"><span>GitHub</span><a href="https://github.com/wattboard">github.com/wattboard</a></div>
+        <div class="row"><span>Ubicación</span><span>Madrid · trabajo en remoto</span></div>
+        <div class="row"><span>Código</span><span>Repositorios privados. Enseño el código bajo petición.</span></div>
+        <div class="btns" style="margin-top:6px"><a class="btn primary" href="cv.pdf">Descargar CV (PDF)</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Miguel Ángel de Arriba</span>
+    <span>WattBoard y Glanceboard son apps independientes, no afiliadas a Tesla, Inc.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var c=document.getElementById('zipwing-canvas'); if(!c) return;
+  var x=c.getContext('2d'), W=0,H=0, dpr=Math.min(window.devicePixelRatio||1,2);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);}
+  size(); window.addEventListener('resize',size);
+  var pipes=[0.15,0.42,0.7,0.98].map(function(p,i){return {u:p,gap:0.38+0.08*((i*7)%3)/2,h:0.30+0.12*((i*5)%4)/3};});
+  var t0=performance.now();
+  function frame(now){
+    var t=(now-t0)/1000;
+    var g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,'#47B8E8'); g.addColorStop(1,'#CCF0F7');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+    // clouds
+    x.fillStyle='rgba(255,255,255,.75)';
+    for(var k=0;k<4;k++){var cx=((k*0.31-t*0.02)%1.2+1.2)%1.2*W-0.1*W, cy=H*(0.18+0.12*(k%2)); x.beginPath(); x.ellipse(cx,cy,W*0.06,H*0.05,0,0,6.3); x.ellipse(cx+W*0.04,cy-H*0.02,W*0.045,H*0.05,0,0,6.3); x.fill();}
+    // ceiling
+    x.fillStyle='#543847'; x.fillRect(0,0,W,H*0.05);
+    // pipes scroll
+    var speed=reduce?0:0.07;
+    pipes.forEach(function(p){
+      var px=(((p.u-t*speed)%1.1)+1.1)%1.1*W*1.0-0.05*W, pw=W*0.07, top=H*p.h, gap=H*0.42;
+      x.fillStyle='#73BF2E'; x.fillRect(px,H*0.05,pw,top-H*0.05); x.fillRect(px,top+gap,pw,H-top-gap);
+      x.fillStyle='#A3E85C'; x.fillRect(px+pw*0.15,H*0.05,pw*0.15,top-H*0.05); x.fillRect(px+pw*0.15,top+gap,pw*0.15,H-top-gap);
+      x.fillStyle='#548C21'; x.fillRect(px-pw*0.1,top-H*0.05,pw*1.2,H*0.05); x.fillRect(px-pw*0.1,top+gap,pw*1.2,H*0.05);
+    });
+    // red wall
+    x.fillStyle='rgba(230,60,60,.85)'; x.fillRect(0,H*0.05,W*0.035,H);
+    // swing
+    var ax=W*0.42, ay=H*0.05, L=H*0.55, ang=reduce?0.4:Math.sin(t*2.2)*0.75;
+    var bx=ax+Math.sin(ang)*L, by=ay+Math.cos(ang)*L;
+    x.strokeStyle='#543847'; x.lineWidth=2; x.beginPath(); x.moveTo(ax,ay); x.lineTo(bx,by); x.stroke();
+    var r=Math.max(8,H*0.065);
+    x.fillStyle='#FAD633'; x.strokeStyle='#543847'; x.lineWidth=2.5; x.beginPath(); x.arc(bx,by,r,0,6.3); x.fill(); x.stroke();
+    x.fillStyle='#F58221'; x.beginPath(); x.moveTo(bx+r*0.8,by); x.lineTo(bx+r*1.5,by+r*0.2); x.lineTo(bx+r*0.8,by+r*0.4); x.fill();
+    x.fillStyle='#543847'; x.beginPath(); x.arc(bx+r*0.35,by-r*0.25,r*0.15,0,6.3); x.fill();
+    // score
+    x.fillStyle='#FFFFFF'; x.font='700 '+Math.round(H*0.11)+'px "Bricolage Grotesque", system-ui, sans-serif'; x.textAlign='center';
+    x.fillText(String(12+Math.floor(t*speed*10)%40), W*0.5, H*0.2);
+    if(!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
