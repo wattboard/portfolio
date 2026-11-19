@@ -1,5 +1,3 @@
-# Porfolio · Miguel Ángel de Arriba
+# Porfolio (movido)
 
-Desarrollador móvil iOS y Android. Web: https://miguelarriba-dev.github.io/
-
-`src/body.html` es la fuente de la página y `src/cv.html` la del CV (`cv.pdf`).
+El porfolio está ahora en https://miguelarriba-dev.github.io/ (repo `miguelarriba-dev/miguelarriba-dev.github.io`). Esta página solo redirige allí.
