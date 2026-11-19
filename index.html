@@ -219,8 +219,48 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <p>Todas son proyectos propios: me he encargado del producto, el diseño, el código en iOS y Android, las pruebas y la publicación.</p>
     </div>
 
+    <!-- Glanceboard -->
+    <article class="project" id="glanceboard">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/glanceboard-icon.png" alt="Icono de GlanceBoard">
+          <div><h3>GlanceBoard</h3><p class="tag">Segunda pantalla para el coche, por Bluetooth directo</p></div>
+        </div>
+        <div class="status">
+          <span class="pill beta">iOS · beta abierta en TestFlight</span>
+          <span class="pill beta">Android · beta abierta</span>
+          <span class="pill">7 idiomas</span>
+        </div>
+        <p class="what">Convierte un móvil montado tras el volante en un cuadro de mandos en vivo: velocidad, potencia, batería, neumáticos, puertas y carga. Habla con el coche por Bluetooth, sin servidor ni cuenta en la nube.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>Apps nativas en iOS y Android con modo vertical, horizontal y HUD, controles del coche, widgets, Live Activity, app de Apple Watch, suscripción y pago único, y anuncios con consentimiento RGPD.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>En Android implementé en Kotlin el protocolo Bluetooth cifrado del coche: sesión, firma de mensajes, tramas y Protobuf.</li>
+              <li>Antes de escribir la app hice una prueba de concepto en carretera y medí unas 4 lecturas por segundo y un límite de unos 330 bytes por respuesta. Con eso diseñé una rotación de categorías de datos y la velocidad por GPS como respaldo.</li>
+              <li>Por seguridad, los controles solo funcionan con el coche aparcado y piden confirmación.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>Core Bluetooth</span><span>ActivityKit</span><span>Kotlin</span><span>Compose</span><span>Protobuf</span><span>CryptoKit</span><span>AdMob</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn primary" href="https://testflight.apple.com/join/BWk671ut">Beta iPhone (TestFlight)</a>
+          <a class="btn primary" href="https://groups.google.com/g/glanceboard-testers">Beta Android</a>
+          <a class="btn" href="https://wattboard.github.io/glanceboard-web/">Web</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots">
+          <div class="phone"><img src="assets/glanceboard-1.jpg" alt="Pantalla de conducción con velocímetro en arco a 118 km/h" loading="lazy"></div>
+          <div class="phone"><img src="assets/glanceboard-2.jpg" alt="Vista cenital del coche con presión de cada neumático" loading="lazy"></div>
+          <div class="phone"><img src="assets/glanceboard-3.jpg" alt="Pantalla de carga con porcentaje y autonomía" loading="lazy"></div>
+        </div>
+        <p class="figcap">Capturas de la versión Android, con datos de demostración.</p>
+      </div>
+    </article>
+
     <!-- WattBoard -->
-    <article class="project" id="wattboard">
+    <article class="project rev" id="wattboard">
       <div class="copy">
         <div class="p-head">
           <img src="assets/wattboard-icon.png" alt="Icono de WattBoard">
@@ -255,6 +295,44 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <div class="phone"><img src="assets/wattboard-3.jpg" alt="Estadísticas semanales con gráfica de distancia" loading="lazy"></div>
         </div>
         <div class="mac"><img src="assets/wattboard-mac.jpg" alt="WattBoard en el Mac, con barra lateral y panel del coche" loading="lazy"></div>
+      </div>
+    </article>
+
+    <!-- Hexa -->
+    <article class="project" id="hexa">
+      <div class="copy">
+        <div class="p-head">
+          <img src="assets/hexa-icon.png" alt="Icono de Hexa">
+          <div><h3>Hexa: aprende insectos</h3><p class="tag">Aprender sobre insectos y perderles el miedo</p></div>
+        </div>
+        <div class="status">
+          <span class="pill beta">iOS y iPadOS · TestFlight</span>
+          <span class="pill beta">Google Play · prueba cerrada</span>
+          <span class="pill">Web instalable</span>
+        </div>
+        <p class="what">App educativa gratuita para niñas y niños de 5.º y 6.º de primaria, con lecciones cortas al estilo de los cursos de idiomas. El contenido es de una tesis de maestría en enseñanza de la biología, usado con permiso de su autora.</p>
+        <dl>
+          <div><dt>Qué hice</dt><dd>La misma app en tres plataformas: iOS y iPadOS con SwiftUI, Android con Compose y una web instalable que funciona sin internet. Incluye cinco tipos de ejercicio, narración por voz, un modo docente con PIN y las ilustraciones propias.</dd></div>
+          <div><dt>Reto técnico</dt><dd>
+            <ul>
+              <li>El temario vive en archivos JSON compartidos por las tres plataformas, así que el contenido se edita una sola vez.</li>
+              <li>Pensada para menores: sin cuentas, sin anuncios y sin recoger ningún dato. El progreso de la clase se exporta a un archivo.</li>
+              <li>Las decisiones de contenido (nota de aprobado, cursos, mascota) se cerraron con la autora del temario.</li>
+            </ul>
+          </dd></div>
+          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>Kotlin</span><span>Compose</span><span>TypeScript</span><span>Vite</span><span>PWA</span></dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn primary" href="https://wattboard.github.io/hexa-web/app/">Probar en el navegador</a>
+          <a class="btn" href="https://wattboard.github.io/hexa-web/">Beta iOS y Android</a>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="shots">
+          <div class="phone"><img src="assets/hexa-1.jpg" alt="Mapa de la unidad Los insectos con lecciones completadas" loading="lazy"></div>
+          <div class="phone"><img src="assets/hexa-2.jpg" alt="Lección sobre mariposas y polillas con la mascota" loading="lazy"></div>
+          <div class="phone"><img src="assets/hexa-3.jpg" alt="Ejercicio para ordenar el ciclo de vida de la mariposa" loading="lazy"></div>
+        </div>
       </div>
     </article>
 
@@ -296,90 +374,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
     </article>
 
-    <!-- Glanceboard -->
-    <article class="project" id="glanceboard">
-      <div class="copy">
-        <div class="p-head">
-          <img src="assets/glanceboard-icon.png" alt="Icono de Glanceboard">
-          <div><h3>Glanceboard</h3><p class="tag">Segunda pantalla para el coche, por Bluetooth directo</p></div>
-        </div>
-        <div class="status">
-          <span class="pill beta">iOS · beta abierta en TestFlight</span>
-          <span class="pill beta">Android · beta abierta</span>
-          <span class="pill">7 idiomas</span>
-        </div>
-        <p class="what">Convierte un móvil montado tras el volante en un cuadro de mandos en vivo: velocidad, potencia, batería, neumáticos, puertas y carga. Habla con el coche por Bluetooth, sin servidor ni cuenta en la nube.</p>
-        <dl>
-          <div><dt>Qué hice</dt><dd>Apps nativas en iOS y Android con modo vertical, horizontal y HUD, controles del coche, widgets, Live Activity, app de Apple Watch, suscripción y pago único, y anuncios con consentimiento RGPD.</dd></div>
-          <div><dt>Reto técnico</dt><dd>
-            <ul>
-              <li>En Android implementé en Kotlin el protocolo Bluetooth cifrado del coche: sesión, firma de mensajes, tramas y Protobuf.</li>
-              <li>Antes de escribir la app hice una prueba de concepto en carretera y medí unas 4 lecturas por segundo y un límite de unos 330 bytes por respuesta. Con eso diseñé una rotación de categorías de datos y la velocidad por GPS como respaldo.</li>
-              <li>Por seguridad, los controles solo funcionan con el coche aparcado y piden confirmación.</li>
-            </ul>
-          </dd></div>
-          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>Core Bluetooth</span><span>ActivityKit</span><span>Kotlin</span><span>Compose</span><span>Protobuf</span><span>CryptoKit</span><span>AdMob</span></dd></div>
-        </dl>
-        <div class="btns">
-          <a class="btn primary" href="https://testflight.apple.com/join/BWk671ut">Beta iPhone (TestFlight)</a>
-          <a class="btn primary" href="https://groups.google.com/g/glanceboard-testers">Beta Android</a>
-          <a class="btn" href="https://wattboard.github.io/glanceboard-web/">Web</a>
-        </div>
-      </div>
-      <div class="visual">
-        <div class="shots">
-          <div class="phone"><img src="assets/glanceboard-1.jpg" alt="Pantalla de conducción con velocímetro en arco a 118 km/h" loading="lazy"></div>
-          <div class="phone"><img src="assets/glanceboard-2.jpg" alt="Vista cenital del coche con presión de cada neumático" loading="lazy"></div>
-          <div class="phone"><img src="assets/glanceboard-3.jpg" alt="Pantalla de carga con porcentaje y autonomía" loading="lazy"></div>
-        </div>
-        <p class="figcap">Capturas de la versión Android, con datos de demostración.</p>
-      </div>
-    </article>
-
-    <!-- Hexa -->
-    <article class="project rev" id="hexa">
-      <div class="copy">
-        <div class="p-head">
-          <img src="assets/hexa-icon.png" alt="Icono de Hexa">
-          <div><h3>Hexa</h3><p class="tag">Aprender sobre insectos y perderles el miedo</p></div>
-        </div>
-        <div class="status">
-          <span class="pill beta">iOS y iPadOS · TestFlight</span>
-          <span class="pill beta">Google Play · prueba cerrada</span>
-          <span class="pill">Web instalable</span>
-        </div>
-        <p class="what">App educativa gratuita para niñas y niños de 5.º y 6.º de primaria, con lecciones cortas al estilo de los cursos de idiomas. El contenido es de una tesis de maestría en enseñanza de la biología, usado con permiso de su autora.</p>
-        <dl>
-          <div><dt>Qué hice</dt><dd>La misma app en tres plataformas: iOS y iPadOS con SwiftUI, Android con Compose y una web instalable que funciona sin internet. Incluye cinco tipos de ejercicio, narración por voz, un modo docente con PIN y las ilustraciones propias.</dd></div>
-          <div><dt>Reto técnico</dt><dd>
-            <ul>
-              <li>El temario vive en archivos JSON compartidos por las tres plataformas, así que el contenido se edita una sola vez.</li>
-              <li>Pensada para menores: sin cuentas, sin anuncios y sin recoger ningún dato. El progreso de la clase se exporta a un archivo.</li>
-              <li>Las decisiones de contenido (nota de aprobado, cursos, mascota) se cerraron con la autora del temario.</li>
-            </ul>
-          </dd></div>
-          <div><dt>Tecnologías</dt><dd class="stack"><span>Swift</span><span>SwiftUI</span><span>AVFoundation</span><span>Kotlin</span><span>Compose</span><span>TypeScript</span><span>Vite</span><span>PWA</span></dd></div>
-        </dl>
-        <div class="btns">
-          <a class="btn primary" href="https://wattboard.github.io/hexa-web/app/">Probar en el navegador</a>
-          <a class="btn" href="https://wattboard.github.io/hexa-web/">Beta iOS y Android</a>
-        </div>
-      </div>
-      <div class="visual">
-        <div class="shots">
-          <div class="phone"><img src="assets/hexa-1.jpg" alt="Mapa de la unidad Los insectos con lecciones completadas" loading="lazy"></div>
-          <div class="phone"><img src="assets/hexa-2.jpg" alt="Lección sobre mariposas y polillas con la mascota" loading="lazy"></div>
-          <div class="phone"><img src="assets/hexa-3.jpg" alt="Ejercicio para ordenar el ciclo de vida de la mariposa" loading="lazy"></div>
-        </div>
-      </div>
-    </article>
-
     <!-- Zipwing -->
     <article class="project" id="zipwing">
       <div class="copy">
         <div class="p-head">
-          <img src="assets/zipwing-icon.png" alt="Icono de Zipwing">
-          <div><h3>Zipwing</h3><p class="tag">Juego arcade de un solo toque</p></div>
+          <img src="assets/zipwing-icon.png" alt="Icono de ZipWing">
+          <div><h3>ZipWing</h3><p class="tag">Juego arcade de un solo toque</p></div>
         </div>
         <div class="status">
           <span class="pill dev">iOS · en desarrollo</span>
@@ -479,7 +479,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer>
   <div class="wrap">
     <span>© 2026 Miguel Ángel de Arriba</span>
-    <span>WattBoard y Glanceboard son apps independientes, no afiliadas a Tesla, Inc.</span>
+    <span>WattBoard y GlanceBoard son apps independientes, no afiliadas a Tesla, Inc.</span>
   </div>
 </footer>
 
